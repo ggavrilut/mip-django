@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  app:
+    container_name: mip-django
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python manage.py runserver 0.0.0.0:8000
+    image: mip-django
+    ports:
+      - "8000:8000"
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/code
+    networks:
+      - default
