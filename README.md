@@ -3,7 +3,13 @@
 # install project
 ## First time
 * docker-compose up -d
-* docker-compose run app djang-admin startproject app .
+* docker-compose run app django-admin startproject app .
+
+#### To use mongodb with Django
+* install djongo *see requirements.txt* with a specific value for **sqlparse**
+* create database in mongo for the project
+* configure in settings.py
+
 ## Project exists
 * docker-compose up -d
 
