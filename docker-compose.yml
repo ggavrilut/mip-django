@@ -22,7 +22,7 @@ services:
     container_name: mip-django.mongo
     restart: always
     volumes:
-      - ../../.docker-data/mongo:/data/db
+      - ./.docker-data/mongo:/data/db
     ports:
       - "27017:27017"
     environment:
