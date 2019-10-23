@@ -9,6 +9,10 @@ from django.views.generic import TemplateView
 
 class HomeView(TemplateView):
     template_name = 'front/home.html'
+    def get(self, request):
+        print("hrere");
+
+        return render(request, self.template_name)
 
 class ContactView(TemplateView):
     template_name = 'front/contact.html'

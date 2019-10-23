@@ -10,6 +10,7 @@ services:
     image: mip-django
     ports:
       - "8000:8000"
+      - "3000:3000"
     stdin_open: true
     tty: true
     volumes:
