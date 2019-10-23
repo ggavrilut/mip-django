@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        <title>Builder</title>
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{% static "front/css/bootstrap.min.css" %}">
+            <link rel="stylesheet" href="{% static "front/css/styles.css" %}">
+        {% endblock stylesheets %}
+    </head>
+    <body>
+        {% include 'front/navbar.html' %}
+
+        <main role="main" class="container">
+            {% block content %}{% endblock content %}
+        </main>
+
+        {% block javascripts %}
+            <script src="{% static 'front/js/jquery-3.4.1.min.js' %}"></script>
+            <script src="{% static 'front/js/bootstrap.bundle.min.js' %}"></script>
+        {% endblock javascripts %}
+    </body>
+</html>
