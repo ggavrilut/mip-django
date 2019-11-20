@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'front'
+    'front',
+    'blog',
+    'newsletter',
+    'contact'
 ]
 
 MIDDLEWARE = [
@@ -55,9 +58,9 @@ ROOT_URLCONF = 'app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        # 'DIRS': [],
         # for global templates folder
-        # 'DIRS': ['./templates']
+        'DIRS': ['./templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -127,7 +130,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 # In Order to use global static folder
-# STATICFILES_DIRS = [
-#     os.path.join(BASE_DIR, "static"),
-#     '../static/',
-# ]
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+    '../static/',
+]

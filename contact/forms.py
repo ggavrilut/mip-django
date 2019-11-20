@@ -1,5 +1,5 @@
 from django import forms
-from front.models import Contact
+from .models import Contact
 
 class ContactForm(forms.ModelForm):
     

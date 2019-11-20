@@ -37,3 +37,11 @@ _in **requirements.txt** or in **Dockerfile** or **docker-compose.yml**_
 * python manage.py startapp
 ## Create superuser
 * python manage.py createsuperuser
+
+# Install in PyCharm
+* Open PyCharm
+* New project
+* In terminal rulati
+* pip install django
+* django-admin startproject app .
+* python manage.py runserver 0.0.0.0:8000
