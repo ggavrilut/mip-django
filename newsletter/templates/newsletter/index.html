@@ -7,4 +7,40 @@
         <h1>Newsletter</h1>
     </div>
 </div>
+{% if messages %}
+    {% for message in messages %}
+    <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}">{{ message }}</div>
+    {% endfor %}
+{% endif %}
+<div class="row">
+    <div class="col-6">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Email</th>
+                    <th>Subscribers</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for newsletter in newsletters %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ newsletter.email }}</td>
+                        <td>{{ newsletter.subscribers }}</td>
+                        <td><a href="{% url 'newsletter_delete' newsletter.email %}" class="btn btn-danger">Delete</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <div class="col-6">
+        <form method="POST">
+            {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit" class="btn btn-primary"/>
+        </form>
+    </div>
+</div>
 {% endblock content %}
