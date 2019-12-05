@@ -5,6 +5,7 @@ from .form import NewsletterForm
 from .models import Newsletter
 from django.contrib import messages
 from django.db.models import Count
+from .service import *
 
 # Create your views here.
 
@@ -26,9 +27,7 @@ class NewsletterView(FormView):
 
     def form_valid(self, form):
         print(form.cleaned_data['email'])
-        newsletter = Newsletter()
-        newsletter.email = form.cleaned_data['email']
-        newsletter.save()
+        service.saveNewsletter(form.cleaned_data['email'])
         messages.add_message(self.request, messages.SUCCESS, 'Thank you.')
         return super().form_valid(form)
 

@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load contact %}
+
 {% block content %}
 <div class="row">
     <div class="col-12">
@@ -12,10 +14,20 @@
         {% endif %}
     </div>
 </div>
+    
+<div class="btn-group" role="group" aria-label="Contact Nav">
+    <a class="btn btn-secondary" href="{% url 'contact_v1' %}">V1</a>
+    <a class="btn btn-secondary" href="{% url 'contact_v2' %}">V2</a>
+</div>
+
 <div class="row">
     <div class="col-12 col-md-6">
         <h1>Contact</h1>
-        <form action="{% url 'contact' %}" method="post" novalidate>
+        <h3>{{ 'Gabriel' | greet }}</h3>
+        <h3>{% greet_me %}</h3>
+        <h3>{% greet_another 'Gabriel' %}</h3>
+        {% last_contact %}
+        <form action="{% url 'contact' %}" method="post" novalidate enctype="multipart/form-data">
             {{ form.non_field_errors }}
             <div class="form-group">
                 {{ form.subject.errors }}
@@ -36,6 +48,11 @@
                 {{ form.message.errors }}
                 <label for="{{ form.message.id_for_label }}">{{ form.message.label }}</label>
                 {{ form.message }}
+            </div>
+            <div class="form-group">
+                {{ form.attachement.errors }}
+                <label for="{{ form.attachement.id_for_label }}">{{ form.attachement.label }}</label>
+                {{ form.attachement }}
             </div>
             {% csrf_token %}
             <input class="btn btn-primary" type="submit" value="Submit">
