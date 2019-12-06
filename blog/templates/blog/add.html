@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Add a blog entry</h1>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        Entry
+                    </div>
+                    <div class="card-body">
+                        {{ entryForm.as_p }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        Tags
+                    </div>
+                    <div class="card-body">
+                        {{ tagsFormset.as_p }}
+                    </div>
+                </div>
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <input type="submit" class="btn btn-primary" value="Submit"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock content %}
+
+
+

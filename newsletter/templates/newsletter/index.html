@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block content %}
 
 <div class="row">
@@ -36,7 +38,7 @@
         </table>
     </div>
     <div class="col-6">
-        <form method="POST">
+        <form id="newsletter-form" method="POST" data-ajax-url="{% url 'newsletter_ajax' %}">
             {% csrf_token %}
             {{ form }}
             <input type="submit" value="Submit" class="btn btn-primary"/>
@@ -44,3 +46,8 @@
     </div>
 </div>
 {% endblock content %}
+
+{% block javascripts %}
+    {{ block.super }}
+    <script src="{% static 'js/newsletter.js' %}"></script>
+{% endblock javascripts %}

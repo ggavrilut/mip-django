@@ -1,11 +1,14 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from django.urls import reverse_lazy
 from django.views.generic import FormView, View
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_protect
 from .form import NewsletterForm
 from .models import Newsletter
 from django.contrib import messages
 from django.db.models import Count
-from .service import *
+from .service import ContactService
 
 # Create your views here.
 
@@ -27,7 +30,8 @@ class NewsletterView(FormView):
 
     def form_valid(self, form):
         print(form.cleaned_data['email'])
-        service.saveNewsletter(form.cleaned_data['email'])
+        contactService = ContactService()
+        contactService.saveNewsletter(form.cleaned_data['email'])
         messages.add_message(self.request, messages.SUCCESS, 'Thank you.')
         return super().form_valid(form)
 
@@ -49,3 +53,17 @@ class DeleteNewsletterView(View):
 
         return redirect('newsletter')
     
+
+class NewsletterAjax(View):
+
+    @method_decorator(csrf_protect)
+    def dispatch(self, request, *args, **kwargs):
+        return super().dispatch(request, *args, **kwargs)
+    
+
+    def post(self, request, *args, **kwargs):
+        print(request.POST)
+        contactService = ContactService()
+        contactService.saveNewsletter(request.POST['email'])
+        
+        return JsonResponse({'message': 'success'})
